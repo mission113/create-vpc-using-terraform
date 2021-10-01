@@ -9,5 +9,5 @@ pipeline {
       }
     }
    }
-[root@ip-172-31-85-185 create-vpc-using-terraform]#
+
 
