@@ -1,7 +1,7 @@
 pipeline {
   agent any 
   stages {
-    stage ('build') {
+    stage ('terraform') {
       steps {
         sh ./terraform apply --auto-approve
       }
