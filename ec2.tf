@@ -4,31 +4,33 @@ provider "aws" {
   access_key = "AKIAU554LRDCM3OYPC4C"
   secret_key = "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"
  }
-resource "aws_instance" "myec2" {
-   ami = "ami-0f0965399835bd1e9"
-   instance_type = "t2.micro"
+resource "aws_vpc" "vpc" {
+  cidr_block = "${var.cidr_vpc}"
 }
-
-resource "aws_eip" "lb" {
-  vpc      = true
+resource "aws_internet_gateway" "igw" {
+  vpc_id = "${aws_vpc.vpc.id}"
 }
-
-resource "aws_eip_association" "eip_assoc" {
-  instance_id   = aws_instance.myec2.id
-  allocation_id = aws_eip.lb.id
+resource "aws_subnet" "subnet_public" {
+  vpc_id = "${aws_vpc.vpc.id}"
+  cidr_block = "${var.cidr_subnet}"
 }
-
-
-resource "aws_security_group" "allow_tls" {
-  name        = "kplabs-security-group"
-
-  ingress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["${aws_eip.lb.public_ip}/32"]
-
-#    cidr_blocks = [aws_eip.lb.public_ip/32]
+resource "aws_route_table" "rtb_public" {
+  vpc_id = "${aws_vpc.vpc.id}"
+route {
+      cidr_block = "0.0.0.0/0"
+      gateway_id = "${aws_internet_gateway.igw.id}"
   }
 }
-
+resource "aws_route_table_association" "rta_subnet_public" {
+  subnet_id      = "${aws_subnet.subnet_public.id}"
+  route_table_id = "${aws_route_table.rtb_public.id}"
+}
+resource "aws_security_group" "sg_22" {
+  name = "sg_22"
+  vpc_id = "${aws_vpc.vpc.id}"
+  ingress {
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+  }
