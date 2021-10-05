@@ -34,3 +34,9 @@ resource "aws_security_group" "sg_22" {
       protocol    = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
   }
+  resource "aws_instance" "myec2Instance" {
+  ami           = "${var.instance_ami}"
+  instance_type = "${var.instance_type}"
+  subnet_id = "${aws_subnet.subnet_public.id}"
+  vpc_security_group_ids = ["${aws_security_group.sg_22.id}"]
+  }
