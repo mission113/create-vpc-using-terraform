@@ -13,7 +13,7 @@ pipeline {
       } //terrsform plan
    //stage('terraform apply') {
       steps {
-            sh 'terraform appy'
+            sh 'terraform apply'
          } 
       } //terrsform apply
        //   
@@ -21,7 +21,7 @@ pipeline {
       steps {
             sh 'terraform destroy'
          } 
-      } //terrsform destroy
+      } //terraform destroy
     }
 }
   
