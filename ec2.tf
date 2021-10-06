@@ -19,3 +19,4 @@ data "aws_ami" "ec2-replica" {
 resource "aws_instance" "instance-1" {
     ami = data.aws_ami.ec2-replica.id
    instance_type = "t2.micro"
+}
