@@ -10,13 +10,20 @@ pipeline {
       steps {
             sh 'terraform plan'
          } 
-      } //
-     stage('terraform apply') {
+      } //terrsform plan
+   //stage('terraform apply') {
       steps {
-            sh 'terraform apply --auto-approve'
+            sh 'terraform appy'
          } 
-      } //terraform apply
+      } //terrsform apply
+       //   
+      stage('terraform destroy') {
+      steps {
+            sh 'terraform destroy'
+         } 
+      } //terrsform destroy
     }
-   }
-
+}
+  
+        
 
