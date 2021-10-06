@@ -22,6 +22,7 @@ route {
       cidr_block = "0.0.0.0/0"
       gateway_id = "${aws_internet_gateway.igw-1.id}"
   }
+}
 resource "aws_route_table_association" "rta_subnet_public" {
   subnet_id      = "${aws_subnet.subnet_public.id}"
   route_table_id = "${aws_route_table.rtb_public.id}"
@@ -35,6 +36,7 @@ resource "aws_security_group" "sg_22" {
       protocol    = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
   }
+}
 
 data "aws_ami" "ec2-replica" {
   most_recent = true
