@@ -4,6 +4,7 @@ provider "aws" {
   access_key = "AKIAU554LRDCM3OYPC4C"
   secret_key = "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"
  }
-resource "aws_vpc" "vpc" {
-  cidr_block = "10.16.0.0/16"
+resource "aws_instance" "myec2" {
+  ami = "ami-087c17d1fe0178315"
+  type = "t2.micro"
 }
