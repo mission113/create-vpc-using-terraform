@@ -4,7 +4,7 @@ provider "aws" {
   access_key = "AKIAU554LRDCM3OYPC4C"
   secret_key = "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"
  }
-resource "aws_instance" "myec2" {
+resource "aws_instance" "myec2-1" {
   ami = "ami-08b21986f1dc18832"
   instance_type = "t2.micro"
 }
