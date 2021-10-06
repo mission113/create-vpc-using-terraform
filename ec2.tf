@@ -16,6 +16,10 @@ resource "aws_subnet" "subnet_public" {
   map_public_ip_on_launch = "true"
   availability_zone = "us-east-1a"
 }
+resource "aws_nat_gateway" "NAT-ec2" {
+  connectivity_type = "private"
+  subnet_id         = aws_subnet.subnet_public.id
+}
 resource "aws_route_table" "rtb_public" {
   vpc_id = "${aws_vpc.vpc-1.id}"
 route {
