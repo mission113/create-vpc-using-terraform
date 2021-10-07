@@ -11,18 +11,18 @@ pipeline {
             sh 'terraform plan'
          } 
       } //terrsform plan
-  stage('terraform apply') {
+ /* stage('terraform apply') {
       steps {
             sh 'terraform apply --auto-approve'
          } 
       } //terrsform apply
- 
-       /*stage('terraform destroy') {
+ */
+       stage('terraform destroy') {
       steps {
             sh 'terraform destroy --auto-approve'
          } 
       } //terrsform destroy
-      */
+      
     }
 }
   
