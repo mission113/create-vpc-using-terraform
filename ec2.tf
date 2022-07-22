@@ -15,10 +15,7 @@ resource "aws_subnet" "subnet_public" {
   cidr_block = "10.16.0.0/20"
   map_public_ip_on_launch = "true"
   availability_zone = "us-east-1a"
-}
-resource "aws_nat_gateway" "NAT-ec2" {
-  connectivity_type = "private"
-  subnet_id         = aws_subnet.subnet_public.id
+
 }
 resource "aws_route_table" "rtb_public" {
   vpc_id = "${aws_vpc.vpc-1.id}"
@@ -40,6 +37,13 @@ resource "aws_security_group" "sg_22" {
       protocol    = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
   }
+  egress {
+    from_port   = 22
+      to_port     = 22
+      protocol    = "-1"
+      cidr_blocks = ["0.0.0.0/0"]
+  }
+    
 }
 
 
