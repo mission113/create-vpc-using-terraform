@@ -1,5 +1,5 @@
 
-provider "aws" {
+/*provider "aws" {
   region     = "us-east-1"
   access_key = "AKIA6CTZHZX5YG5R5CRK"
   secret_key = "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"
@@ -54,4 +54,4 @@ resource "aws_instance" "instance-1" {
   subnet_id = "${aws_subnet.subnet_public.id}"
   vpc_security_group_ids = ["${aws_security_group.sg_22.id}"]
 }
-
+*/
