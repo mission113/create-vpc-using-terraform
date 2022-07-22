@@ -42,20 +42,10 @@ resource "aws_security_group" "sg_22" {
   }
 }
 
-data "aws_ami" "ec2-replica" {
-  most_recent = true
 
-  owners = ["self"]
-
-
-  tags = {
-    name   = "ec2-replica"
-    Tested = true
-  }
-}
 
 resource "aws_instance" "instance-1" {
-    ami = data.aws_ami.ec2-replica.id
+    ami = "ami-06640050dc3f556bb"
    instance_type = "t2.micro"
   subnet_id = "${aws_subnet.subnet_public.id}"
   vpc_security_group_ids = ["${aws_security_group.sg_22.id}"]
